@@ -2,7 +2,7 @@ var config = {
   appid: 'wx42b2746da8e4f318',
   appsecret: '515e6bc276b9efe11dc463746490a123',
   token: 'token',
-  encodingAESKey: 'aeskey'
+  encodingAESKey: '0000000000000000000000000000000000000000000'
 };
 
 var api = new (require('wechat-api'))(config.appid, config.appsecret);
