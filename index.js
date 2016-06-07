@@ -41,7 +41,6 @@ app.post('/menu', function(req, res, next) {
   });
 });
 
-app.post('/wechat/callback', function(req, res, next) {
-  console.log(req.body);
-  res.json();
-});
+app.use('/wechat', wechat(config, function(req, res, next) {
+  res.reply('ok');
+}));
