@@ -1,0 +1,25 @@
+{
+  "name": "wechat-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "serve-static": "^1.10.3",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "wechat-api": "^1.27.1",
+    "wechat": "^2.0.3"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "nodemon": "^1.9.2"
+  },
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower install --allow-root"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "wechat-hw",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Gen Liu <gerald_721@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-qrcode": "^6.2.1"
+  }
+}

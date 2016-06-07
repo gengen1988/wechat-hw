@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body ng-app="app" ng-controller="DeviceController as deviceCtrl">
+
+  <input ng-model="productId" ng-init="productId = 10554">
+  <button ng-click="deviceCtrl.get(productId)" ng-disabled="deviceCtrl.loading">get device</button>
+
+  <div>
+    <qrcode data="{{deviceCtrl.qrcode || ''}}" size="240"></qrcode>
+    <div>{{deviceCtrl.deviceId}}</div>
+  </div>
+
+  <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-qrcode/angular-qrcode.js"></script>
+  <script>
+
+    angular.module('app', ['monospaced.qrcode'])
+      .controller('DeviceController', DeviceController);
+
+    function DeviceController($http) {
+      var vm = this;
+
+      this.get = function(productId) {
+        vm.loading = true;
+        $http.get('/devices/qrcode', {params: {productId}})
+          .then(function(result) {
+            vm.deviceId = result.data.deviceId;
+            vm.qrcode = result.data.qrcode;
+          })
+          .finally(function() {
+            vm.loading = false;
+          });
+      };
+    }
+
+  </script>
+</body>
+</html>
