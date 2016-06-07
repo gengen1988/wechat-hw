@@ -24,3 +24,24 @@ app.get('/devices/qrcode', function(req, res, next) {
     res.json({deviceId, qrcode});
   });
 });
+
+app.get('/menu', function(req, res, next) {
+  api.getMenu(function(err, result) {
+    if (err) return next(err);
+    res.json(result.menu);
+  });
+});
+
+app.post('/menu', function(req, res, next) {
+  var menu = req.body.menu;
+  console.log(menu);
+  api.createMenu(menu, function(err, result) {
+    if (err) return next(err);
+    res.json();
+  });
+});
+
+app.post('/wechat/callback', function(req, res, next) {
+  console.log(req.body);
+  res.json();
+});

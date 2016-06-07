@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-qrcode": "^6.2.1"
+    "angular-qrcode": "^6.2.1",
+    "bootstrap": "^3.3.6"
   }
 }

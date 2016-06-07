@@ -3,15 +3,26 @@
 <head>
   <meta charset="utf-8">
   <title></title>
+  <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
 </head>
 <body ng-app="app" ng-controller="DeviceController as deviceCtrl">
 
-  <input ng-model="productId" ng-init="productId = 10554">
-  <button ng-click="deviceCtrl.get(productId)" ng-disabled="deviceCtrl.loading">get device</button>
-
   <div>
-    <qrcode data="{{deviceCtrl.qrcode || ''}}" size="240"></qrcode>
-    <div>{{deviceCtrl.deviceId}}</div>
+
+    <fieldset>
+      <input ng-model="productId" ng-init="productId = 10554">
+      <button ng-click="deviceCtrl.get(productId)" ng-disabled="deviceCtrl.loading">get device</button>
+      <div>
+        <qrcode data="{{deviceCtrl.qrcode || ''}}" size="240"></qrcode>
+        <div>{{deviceCtrl.deviceId}}</div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <textarea ng-model="deviceCtrl.menu"></textarea>
+      <button ng-click="deviceCtrl.createMenu(deviceCtrl.menu)">更新菜单</button>
+    </fieldset>
+
   </div>
 
   <script src="bower_components/qrcode-generator/js/qrcode.js"></script>
@@ -24,6 +35,20 @@
 
     function DeviceController($http) {
       var vm = this;
+
+      $http.get('/menu').then(function(result) {
+        var menu = result.data;
+        vm.menu = JSON.stringify(menu, null, 2);
+      });
+
+      this.createMenu = function(menu) {
+        vm.loading = true;
+        $http.post('/menu', {menu}).then(function() {
+          alert('成功');
+        }).finally(function() {
+          vm.loading = false;
+        });
+      };
 
       this.get = function(productId) {
         vm.loading = true;
