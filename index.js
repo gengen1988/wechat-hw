@@ -41,6 +41,6 @@ app.post('/menu', function(req, res, next) {
   });
 });
 
-app.use('/wechat', wechat(config, function(req, res, next) {
+app.use('/wechat', require('wechat')(config, function(req, res, next) {
   res.reply('ok');
 }));
